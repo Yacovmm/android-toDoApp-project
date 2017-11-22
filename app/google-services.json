@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "324069566217",
+    "firebase_url": "https://mytodoapp-edb35.firebaseio.com",
+    "project_id": "mytodoapp-edb35",
+    "storage_bucket": "mytodoapp-edb35.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:324069566217:android:1ff2d98e46faae55",
+        "android_client_info": {
+          "package_name": "com.yacov.mytodoapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "324069566217-tjapen5hhh9ognvna0i42uq5sebiefct.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.yacov.mytodoapp",
+            "certificate_hash": "42234df731d152c5b30fcf04558fe36c8a9fa31c"
+          }
+        },
+        {
+          "client_id": "324069566217-337fujoo78ja9jgrnoj7a8fsduo04s20.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyALHbBjYBS-h-6n_SCCBNyFHVgz1Ex2qy0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "324069566217-337fujoo78ja9jgrnoj7a8fsduo04s20.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
