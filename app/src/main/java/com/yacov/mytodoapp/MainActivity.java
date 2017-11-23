@@ -63,18 +63,19 @@ public class MainActivity extends AppCompatActivity {
 
     public static class TaskViewHolder extends RecyclerView.ViewHolder{
 
+        View mView;
         public TaskViewHolder(View itemView){
             super(itemView);
-            View mView = itemView;
+            mView = itemView;
         }
 
         public void setName(String name){
-            TextView task_name = itemView.findViewById(R.id.taskNameID);
+            TextView task_name = mView.findViewById(R.id.taskNameID);
             task_name.setText(name);
         }
 
         public void setDate(String date){
-            TextView task_time = itemView.findViewById(R.id.taskTimeID);
+            TextView task_time = mView.findViewById(R.id.taskTimeID);
             task_time.setText(date);
         }
 
@@ -93,8 +94,18 @@ public class MainActivity extends AppCompatActivity {
             @Override
             protected void populateViewHolder(TaskViewHolder viewHolder, Task model, int position) {
 
+                final String task_key = getRef(position).getKey().toString();
                 viewHolder.setName(model.getName());
                 viewHolder.setDate(model.getDate());
+
+                viewHolder.mView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent singleTaskActivity = new Intent(MainActivity.this, SingleTask.class);
+                        singleTaskActivity.putExtra("TaskId", task_key);
+                        startActivity(singleTaskActivity);
+                    }
+                });
 
             }
         };
