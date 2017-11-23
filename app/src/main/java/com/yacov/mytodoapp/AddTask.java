@@ -31,7 +31,7 @@ public class AddTask extends AppCompatActivity {
 
         String name = editTask.getText().toString();
         long date = System.currentTimeMillis();
-        SimpleDateFormat sdf = new SimpleDateFormat("MMM dd MM, yyy h:mm a");
+        SimpleDateFormat sdf = new SimpleDateFormat("MMM dd/MM/yyy h:mm a");
         String dateString = sdf.format(date);
 
         myRef = database.getInstance().getReference().child("Tasks");
@@ -39,7 +39,5 @@ public class AddTask extends AppCompatActivity {
         DatabaseReference newTask = myRef.push();
         newTask.child("name").setValue(name);
         newTask.child("date").setValue(dateString);
-
-
     }
 }

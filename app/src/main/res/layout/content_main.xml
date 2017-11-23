@@ -9,10 +9,55 @@
     tools:context="com.yacov.mytodoapp.MainActivity"
     tools:showIn="@layout/activity_main">
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/relativeLayoutID"
+        >
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:background="@drawable/img"
+            android:fitsSystemWindows="true"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Monday"
+            android:textColor="#FFFFFF"
+            android:textSize="40sp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="30dp"
+            android:id="@+id/bannerDay"
+            />
+
+        <TextView
+            android:id="@+id/bannerDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/bannerDay"
+            android:layout_alignStart="@+id/bannerDay"
+            android:layout_below="@+id/bannerDay"
+            android:text="7 April"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp" />
+
+
+    </RelativeLayout>
+
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/task_list"
-        ></android.support.v7.widget.RecyclerView>
+        >
+
+
+    </android.support.v7.widget.RecyclerView>
+
+
 
 </LinearLayout>

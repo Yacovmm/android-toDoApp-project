@@ -11,10 +11,19 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
+
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
 
     private RecyclerView mTaskList;
+    private DatabaseReference databaseReference;
 
 
     @Override
@@ -27,6 +36,21 @@ public class MainActivity extends AppCompatActivity {
         mTaskList = (RecyclerView) findViewById(R.id.task_list);
         mTaskList.setHasFixedSize(true);
         mTaskList.setLayoutManager(new LinearLayoutManager(this));
+        databaseReference = FirebaseDatabase.getInstance().getReference().child("Tasks");
+
+        //Adding the data values
+        TextView bannerDay = (TextView) findViewById(R.id.bannerDay);
+        TextView bannerDate = (TextView) findViewById(R.id.bannerDate);
+
+        SimpleDateFormat sdf = new SimpleDateFormat("EEEE");
+        Date d = new Date();
+        String dayOfTheWeek = sdf.format(d);
+        bannerDay.setText(dayOfTheWeek);
+
+        long date = System.currentTimeMillis();
+        SimpleDateFormat sdff = new SimpleDateFormat("MMM dd/MM/yyy h:mm a");
+        String dayString = sdff.format(date);
+        bannerDate.setText(dayString);
 
     }
 
@@ -35,6 +59,46 @@ public class MainActivity extends AppCompatActivity {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
+    }
+
+    public static class TaskViewHolder extends RecyclerView.ViewHolder{
+
+        public TaskViewHolder(View itemView){
+            super(itemView);
+            View mView = itemView;
+        }
+
+        public void setName(String name){
+            TextView task_name = itemView.findViewById(R.id.taskNameID);
+            task_name.setText(name);
+        }
+
+        public void setDate(String date){
+            TextView task_time = itemView.findViewById(R.id.taskTimeID);
+            task_time.setText(date);
+        }
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        FirebaseRecyclerAdapter<Task, TaskViewHolder> FBRA = new FirebaseRecyclerAdapter<Task, TaskViewHolder>(
+                Task.class,
+                R.layout.task_row,
+                TaskViewHolder.class,
+                databaseReference
+        ) {
+            @Override
+            protected void populateViewHolder(TaskViewHolder viewHolder, Task model, int position) {
+
+                viewHolder.setName(model.getName());
+                viewHolder.setDate(model.getDate());
+
+            }
+        };
+        mTaskList.setAdapter(FBRA);
     }
 
     @Override
